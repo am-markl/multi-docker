@@ -13,3 +13,10 @@ after_success:
   - docker build -t mttlong/multi-nginx ./nginx
   - docker build -t mttlong/multi-server ./server
   - docker build -t mttlong/multi-worker ./worker  
+#Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+#Take the build images and push Docker Hub
+  - docker push mttlong/multi-client
+  - docker push mttlong/multi-nginx
+  - docker push mttlong/multi-server
+  - docker push mttlong/multi-worker
